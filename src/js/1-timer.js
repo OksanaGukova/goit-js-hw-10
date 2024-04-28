@@ -54,7 +54,6 @@ const flatpickrInstance = flatpickr(timerInput, options);
 function dateCheck(selectedDates) {
   userSelectedDate = selectedDates[0].getTime();
   currentDate = new Date().getTime();
-
   if (userSelectedDate > currentDate) {
     startButton.disabled = false;
   } else {
@@ -62,7 +61,7 @@ function dateCheck(selectedDates) {
       message: 'Please choose a date in the future',
     });
   }
-}
+};
 
 function onClick() {
   const userSelectedDate = flatpickrInstance.selectedDates[0].getTime();
@@ -81,15 +80,15 @@ function onClick() {
   }, 1000);
   startButton.disabled = true;
   timerInput.disabled = true;
-}
+};
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
-}
+};
 
 function updateTimer({ days, hours, minutes, seconds }) {
   dataDays.textContent = addLeadingZero(days);
   dataHours.textContent = addLeadingZero(hours);
   dataMinutes.textContent = addLeadingZero(minutes);
   dataSeconds.textContent = addLeadingZero(seconds);
-}
+};
