@@ -152,6 +152,6 @@ label input[type="radio"] {
   margin-bottom: 8px;
 }
 
-label {
+.form label {
   margin-right: 40px;
 }
