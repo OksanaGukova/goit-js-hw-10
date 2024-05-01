@@ -47,7 +47,7 @@ const options = {
   },
 };
 
-let userSelectedDate;
+let userSelectedDate = null;
 let currentDate;
 
 const flatpickrInstance = flatpickr(timerInput, options);
@@ -55,21 +55,23 @@ const flatpickrInstance = flatpickr(timerInput, options);
 function dateCheck(selectedDates) {
   userSelectedDate = selectedDates[0].getTime();
   currentDate = new Date().getTime();
-  if (userSelectedDate > currentDate) {
-    startButton.disabled = false;
-  } else {
-    iziToast.show({
+  if (!userSelectedDate || userSelectedDate <= currentDate) {
+    startButton.disabled = true;
+    iziToast.error({
       message: 'Please choose a date in the future',
     });
+  } else {
+    startButton.disabled = false;
   }
-};
+}
+
+startButton.disabled = true; 
 
 function onClick() {
   const userSelectedDate = flatpickrInstance.selectedDates[0].getTime();
-  const timeRemaining = userSelectedDate - currentDate; 
   const intervalId = setInterval(() => {
-    currentDate = new Date().getTime();
-    const timeRemaining = userSelectedDate - currentDate;
+    currentDate = new Date().getTime(); 
+    const timeRemaining = userSelectedDate - currentDate; 
     if (timeRemaining <= 0) {
       clearInterval(intervalId);
       updateTimer({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -79,6 +81,7 @@ function onClick() {
     const time = convertMs(timeRemaining);
     updateTimer(time);
   }, 1000);
+
   startButton.disabled = true;
   timerInput.disabled = true;
 };

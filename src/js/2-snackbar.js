@@ -25,13 +25,13 @@ function createPromise(event) {
   });
   promise
     .then(delay => {
-      iziToast.show({
-        message: `Fulfilled promise in ${delay}ms`,
+      iziToast.success({
+        message: `✅ Fulfilled promise in ${delay}ms`,
       });
     })
     .catch(delay => {
-      iziToast.show({
-        message: `Rejected promise in ${delay}ms`,
+      iziToast.error({
+        message: `❌ Rejected promise in ${delay}ms`,
       });
     });
 }
