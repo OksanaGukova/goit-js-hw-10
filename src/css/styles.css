@@ -146,6 +146,10 @@ color: #fff;
 border:  none;
 }
 
+button[type="submit"]:hover {
+background: #6c8cff;
+}
+
 label input[type="radio"] {
   margin-top: 24px;
   margin-bottom: 8px;
